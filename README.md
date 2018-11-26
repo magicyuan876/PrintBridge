@@ -6,20 +6,28 @@
 经过测试，这个套路是行得通的，现在放出来给用得着的朋友分享下。
 
 #### 软件架构
-软件架构说明
+ 通过Java模拟http服务器，默认监听8281端口，用Java的方式调用本地打印机，而web页面通过ajax的跨域请求传递需要打印的信息和参数
 
 
 #### 安装教程
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 编译为可执行jar包
+2. 写个bat脚本加入到系统计划任务中，保证开机启动即可。
 
 #### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. 一个ajax请求搞定
+    var srcFiles = [];
+    var printFileDTO = {};
+    printFileDTO["fileUrl"] = realPath;  //需要打印的pdf文件url地址
+    printFileDTO["fileName"] = fileName; //需要打印的pdf文件名【可选】
+    printFileDTO["landscape"] = true;    //是否需要横打【可选】
+    srcFiles.push(printFileDTO);
+
+     $.post("http://127.0.0.1:8281/print", JSON.stringify(srcFiles), function(data) {
+                console.log(data)
+            }, 'json')
+
 
 #### 参与贡献
 
