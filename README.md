@@ -55,13 +55,13 @@ git clone https://gitee.com/magic_yuan_admin/PrintBridge.git
 
 # 启动服务
 cd PrintBridge
-mvn clean compile exec:java -Dexec.mainClass="com.genscript.print.PrintApplication"
+mvn clean compile exec:java -Dexec.mainClass="com.magicyuan.print.PrintApplication"
 ```
 
 #### 方式二: 直接运行
 ```bash
 javac -cp "lib/*" -d target/classes src/main/java/**/*.java
-java -cp "target/classes:lib/*" com.genscript.print.PrintApplication
+java -cp "target/classes:lib/*" com.magicyuan.print.PrintApplication
 ```
 
 ### 验证安装

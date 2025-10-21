@@ -1,10 +1,9 @@
-package com.genscript.print;
+package com.magicyuan.print;
 
+import com.magicyuan.print.service.JettyPrintService;
+import com.magicyuan.print.service.PrintService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.genscript.print.service.JettyPrintService;
-import com.genscript.print.service.PrintService;
 
 /**
  * 基于Jetty的HTTP服务器实现

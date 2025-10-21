@@ -1,6 +1,6 @@
-package com.genscript.print.swing;
+package com.magicyuan.print.swing;
 
-import com.genscript.print.dto.PrintDTO;
+import com.magicyuan.print.dto.PrintDTO;
 
 import javax.swing.*;
 import java.util.ArrayList;

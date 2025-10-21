@@ -1,4 +1,4 @@
-package com.genscript.print.i18n;
+package com.magicyuan.print.i18n;
 
 import java.util.Locale;
 import java.util.ResourceBundle;

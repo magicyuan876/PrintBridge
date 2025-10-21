@@ -1,16 +1,17 @@
-package com.genscript.print.ui;
+package com.magicyuan.print.ui;
 
 import java.awt.*;
 import java.util.List;
 
 import javax.swing.*;
 
-import com.genscript.print.config.AppConfig;
-import com.genscript.print.controller.PrintController;
-import com.genscript.print.dto.PrintDTO;
-import com.genscript.print.model.PrintQueueModel;
-import com.genscript.print.service.PrintService;
-import com.genscript.print.service.ServerStatusService;
+import com.magicyuan.print.SingleFileHTTPServer;
+import com.magicyuan.print.config.AppConfig;
+import com.magicyuan.print.controller.PrintController;
+import com.magicyuan.print.dto.PrintDTO;
+import com.magicyuan.print.model.PrintQueueModel;
+import com.magicyuan.print.service.PrintService;
+import com.magicyuan.print.service.ServerStatusService;
 
 /**
  * 打印应用程序主窗口
@@ -57,7 +58,7 @@ public class PrintMainFrame extends JFrame implements ServerStatusService.Status
         this.systemTrayManager = new SystemTrayManager(this);
         
         // 设置PrintService到HTTP服务器
-        com.genscript.print.SingleFileHTTPServer.setPrintService(this.printService);
+        SingleFileHTTPServer.setPrintService(this.printService);
 
         // 初始化UI组件
         initializeComponents();

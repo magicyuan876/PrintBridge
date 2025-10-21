@@ -1,4 +1,4 @@
-package com.genscript.print.service;
+package com.magicyuan.print.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,7 +85,7 @@ public class ServerStatusService {
     private boolean startServer() {
         try {
             // 使用基于Jetty的HTTP服务实现
-            Class<?> serverClass = Class.forName("com.genscript.print.SingleFileHTTPServer");
+            Class<?> serverClass = Class.forName("com.magicyuan.print.SingleFileHTTPServer");
             java.lang.reflect.Method initMethod = serverClass.getMethod("initServer");
             return (Boolean) initMethod.invoke(null);
         } catch (Exception e) {

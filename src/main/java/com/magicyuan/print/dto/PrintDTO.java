@@ -1,4 +1,4 @@
-package com.genscript.print.dto;
+package com.magicyuan.print.dto;
 
 public class PrintDTO {
 

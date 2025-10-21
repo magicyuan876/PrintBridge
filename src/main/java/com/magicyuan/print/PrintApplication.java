@@ -1,12 +1,12 @@
-package com.genscript.print;
+package com.magicyuan.print;
 
 import javax.swing.*;
 
+import com.magicyuan.print.ui.PrintMainFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import com.genscript.print.ui.PrintMainFrame;
 
 /**
  * 打印应用程序主入口类

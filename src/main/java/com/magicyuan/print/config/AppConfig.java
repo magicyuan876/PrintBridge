@@ -1,6 +1,6 @@
-package com.genscript.print.config;
+package com.magicyuan.print.config;
 
-import com.genscript.print.i18n.I18nManager;
+import com.magicyuan.print.i18n.I18nManager;
 
 /**
  * 应用配置类

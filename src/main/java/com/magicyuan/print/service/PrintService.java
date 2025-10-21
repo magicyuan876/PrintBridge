@@ -1,4 +1,4 @@
-package com.genscript.print.service;
+package com.magicyuan.print.service;
 
 import java.awt.print.Book;
 import java.awt.print.PageFormat;
@@ -12,6 +12,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.magicyuan.print.converter.OfficeConverter;
+import com.magicyuan.print.dto.PrintDTO;
 import org.apache.commons.lang.StringUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.printing.PDFPrintable;
@@ -19,10 +21,8 @@ import org.apache.pdfbox.printing.Scaling;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.genscript.print.converter.ImageConverter;
-import com.genscript.print.converter.OfficeConverter;
-import com.genscript.print.dto.PrintDTO;
-import com.genscript.print.model.PrintQueueModel;
+import com.magicyuan.print.converter.ImageConverter;
+import com.magicyuan.print.model.PrintQueueModel;
 
 /**
  * 打印服务类

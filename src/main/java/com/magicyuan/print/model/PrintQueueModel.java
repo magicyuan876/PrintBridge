@@ -1,4 +1,4 @@
-package com.genscript.print.model;
+package com.magicyuan.print.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import javax.swing.*;
 
-import com.genscript.print.dto.PrintDTO;
+import com.magicyuan.print.dto.PrintDTO;
 
 /**
  * 打印队列数据模型

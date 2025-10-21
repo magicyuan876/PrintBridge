@@ -54,14 +54,14 @@
     </appender>
     
     <!-- HTTP相关日志 -->
-    <logger name="com.genscript.print.service.JettyPrintService" level="INFO" additivity="false">
+    <logger name="com.magicyuan.print.service.JettyPrintService" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE_ALL" />
         <appender-ref ref="FILE_ERROR" />
     </logger>
     
     <!-- 打印服务日志 -->
-    <logger name="com.genscript.print.service.PrintService" level="INFO" additivity="false">
+    <logger name="com.magicyuan.print.service.PrintService" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE_ALL" />
         <appender-ref ref="FILE_ERROR" />

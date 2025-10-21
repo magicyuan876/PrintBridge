@@ -1,4 +1,4 @@
-package com.genscript.print.ui;
+package com.magicyuan.print.ui;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;

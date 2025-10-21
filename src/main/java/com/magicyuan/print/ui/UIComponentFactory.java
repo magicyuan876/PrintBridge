@@ -1,16 +1,15 @@
-package com.genscript.print.ui;
+package com.magicyuan.print.ui;
 
 import java.awt.*;
 
 import javax.swing.*;
 
-import com.genscript.print.MyJcheckBox;
-import com.genscript.print.config.AppConfig;
-import com.genscript.print.dto.PrintDTO;
-import com.genscript.print.i18n.I18nManager;
-import com.genscript.print.model.PrintQueueModel;
-import com.genscript.print.service.PrintService;
-import com.genscript.print.service.ServerStatusService;
+import com.magicyuan.print.MyJcheckBox;
+import com.magicyuan.print.config.AppConfig;
+import com.magicyuan.print.dto.PrintDTO;
+import com.magicyuan.print.i18n.I18nManager;
+import com.magicyuan.print.model.PrintQueueModel;
+import com.magicyuan.print.service.ServerStatusService;
 
 /**
  * UI组件工厂类

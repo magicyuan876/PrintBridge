@@ -1,4 +1,4 @@
-package com.genscript.print;
+package com.magicyuan.print;
 
 import java.awt.Component;
 

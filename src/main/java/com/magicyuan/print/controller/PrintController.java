@@ -1,4 +1,4 @@
-package com.genscript.print.controller;
+package com.magicyuan.print.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,15 +8,15 @@ import java.util.List;
 
 import javax.swing.*;
 
+import com.magicyuan.print.dto.PrintDTO;
+import com.magicyuan.print.ui.PrintMainFrame;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.genscript.print.dto.PrintDTO;
-import com.genscript.print.model.PrintQueueModel;
-import com.genscript.print.service.PrintService;
-import com.genscript.print.service.ServerStatusService;
-import com.genscript.print.ui.PrintMainFrame;
-import com.genscript.print.ui.SystemTrayManager;
+import com.magicyuan.print.model.PrintQueueModel;
+import com.magicyuan.print.service.PrintService;
+import com.magicyuan.print.service.ServerStatusService;
+import com.magicyuan.print.ui.SystemTrayManager;
 
 /**
  * 打印控制器类
