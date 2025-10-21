@@ -13,6 +13,20 @@
 
 基于Java Swing + Jetty构建,为Web应用提供高性能、跨浏览器的本地打印解决方案。
 
+简体中文 | [English](./README_EN.md)
+
+---
+
+## ⭐ 给个Star吧!
+
+**如果PrintBridge对您有帮助,请给个Star支持一下!** ⭐
+
+您的支持是我们持续改进PrintBridge、交付更多功能的最大动力。一个Star不仅帮助其他开发者发现这个项目,更能让整个社区受益!
+
+**快速点Star:** 点击页面右上角的 ⭐ 按钮 → 只需2秒钟!
+
+---
+
 ## 为什么选择PrintBridge? 💭
 
 PrintBridge诞生于真实业务场景中的痛点:当Web应用需要调用本地打印机时,传统方案往往复杂、不稳定。PrintBridge提供了一个轻量、可靠的解决方案。
@@ -295,9 +309,9 @@ PrintBridge
 
 ## 版本历史 📋
 
-| 版本 | 日期 | 更新内容 |
-|------|------|----------|
-| **v2.1.0** | 2025-01 | 📄 多格式支持: Word/Excel/PPT/图片 + JODConverter集成 |
+| 版本 | 日期      | 更新内容 |
+|------|---------|----------|
+| **v2.1.0** | 2025-10 | 📄 多格式支持: Word/Excel/PPT/图片 + JODConverter集成 |
 | **v2.0.0** | 2025-01 | 🚀 企业级重构: Jetty服务器 + SLF4J日志 + FlatLaf主题 |
 | **v1.0.0** | 2020-08 | 🎉 初始版本: Socket HTTP服务器 + PDF打印 |
 
@@ -369,8 +383,10 @@ PrintBridge
 
 **⭐ 如果PrintBridge对您有帮助,请给个Star支持! ⭐**
 
+您的Star是我们最大的动力! 只需2秒钟,却对我们意义重大!
+
 Made with ❤️ by developers, for developers
 
-[GitHub](https://github.com/magicyuan876/PrintBridge) · [Gitee](https://gitee.com/magic_yuan_admin/PrintBridge)
+[⭐ GitHub上Star](https://github.com/magicyuan876/PrintBridge) · [⭐ Gitee上Star](https://gitee.com/magic_yuan_admin/PrintBridge) · [提交Issue](https://github.com/magicyuan876/PrintBridge/issues) · [参与讨论](https://github.com/magicyuan876/PrintBridge/discussions)
 
 </div>
