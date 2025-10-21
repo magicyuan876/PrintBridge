@@ -4,8 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.genscript.print</groupId>
-    <artifactId>printserver</artifactId>
+    <artifactId>printbridge</artifactId>
     <version>2.0.0</version>
+    <name>PrintBridge</name>
+    <description>Web Print Middleware - Connect Web Applications to Local Printers</description>
+    <url>https://github.com/magicyuan876/PrintBridge</url>
     <dependencies>
         <dependency>
             <groupId>org.apache.pdfbox</groupId>
