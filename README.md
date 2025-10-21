@@ -4,6 +4,11 @@
 [![Java](https://img.shields.io/badge/Java-8%2B-orange.svg)](https://www.oracle.com/java/)
 [![Jetty](https://img.shields.io/badge/Jetty-9.4-green.svg)](https://www.eclipse.org/jetty/)
 
+[![GitHub stars](https://img.shields.io/github/stars/magicyuan876/PrintBridge?style=social)](https://github.com/magicyuan876/PrintBridge/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/magicyuan876/PrintBridge?style=social)](https://github.com/magicyuan876/PrintBridge/network/members)
+[![Gitee stars](https://gitee.com/magic_yuan_admin/PrintBridge/badge/star.svg?theme=dark)](https://gitee.com/magic_yuan_admin/PrintBridge/stargazers)
+[![Gitee forks](https://gitee.com/magic_yuan_admin/PrintBridge/badge/fork.svg?theme=dark)](https://gitee.com/magic_yuan_admin/PrintBridge/members)
+
 > **连接Web与打印机的智能桥梁** - 一个企业级Web打印中间件,让浏览器应用轻松调用本地打印服务。
 
 基于Java Swing + Jetty构建,为Web应用提供高性能、跨浏览器的本地打印解决方案。
@@ -40,7 +45,13 @@ PrintBridge诞生于真实业务场景中的痛点:当Web应用需要调用本�
 
 #### 方式一: Maven 快速启动(推荐)
 ```bash
+# 从GitHub克隆
 git clone https://github.com/magicyuan876/PrintBridge.git
+
+# 或从Gitee克隆(国内更快)
+git clone https://gitee.com/magic_yuan_admin/PrintBridge.git
+
+# 启动服务
 cd PrintBridge
 mvn clean compile exec:java -Dexec.mainClass="com.genscript.print.PrintApplication"
 ```
@@ -285,6 +296,6 @@ PrintBridge
 
 Made with ❤️ by developers, for developers
 
-[🏠 GitHub](https://github.com/magicyuan876/PrintBridge)
+[GitHub](https://github.com/magicyuan876/PrintBridge) · [Gitee](https://gitee.com/magic_yuan_admin/PrintBridge)
 
 </div>
