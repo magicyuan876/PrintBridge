@@ -7,7 +7,9 @@ import javax.swing.*;
 import com.genscript.print.MyJcheckBox;
 import com.genscript.print.config.AppConfig;
 import com.genscript.print.dto.PrintDTO;
+import com.genscript.print.i18n.I18nManager;
 import com.genscript.print.model.PrintQueueModel;
+import com.genscript.print.service.PrintService;
 import com.genscript.print.service.ServerStatusService;
 
 /**
@@ -22,7 +24,7 @@ public class UIComponentFactory {
     /**
      * 创建主菜单栏
      */
-    public static JMenuBar createMenuBar(JFrame parentFrame) {
+    public static JMenuBar createMenuBar(PrintMainFrame parentFrame) {
         JMenuBar menuBar = new JMenuBar();
 
         // 添加一个空的占位符，让帮助菜单靠右显示
@@ -69,7 +71,7 @@ public class UIComponentFactory {
         JPanel leftInfoPanel = new JPanel(new BorderLayout());
         leftInfoPanel.setOpaque(false);
 
-        JLabel titleLabel = new JLabel(AppConfig.APP_DESCRIPTION);
+        JLabel titleLabel = new JLabel(AppConfig.getAppDescription());
         titleLabel.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.BOLD, AppConfig.Fonts.TITLE_SIZE));
         titleLabel.setForeground(AppConfig.Colors.TEXT_PRIMARY);
 
@@ -252,7 +254,7 @@ public class UIComponentFactory {
     /**
      * 显示关于对话框
      */
-    private static void showAboutDialog(JFrame parentFrame) {
+    private static void showAboutDialog(PrintMainFrame parentFrame) {
         // 创建自定义对话框
         JDialog aboutDialog = new JDialog(parentFrame, "关于 " + AppConfig.APP_NAME, true);
         aboutDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -292,67 +294,106 @@ public class UIComponentFactory {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(8, 0, 8, 0);
+        gbc.insets = new Insets(8, 0, 8, 15);
+        gbc.fill = GridBagConstraints.NONE;
 
         // 添加版本信息
         gbc.gridx = 0;
         gbc.gridy = 0;
-        JLabel versionLabelKey = new JLabel("版本:");
+        JLabel versionLabelKey = new JLabel(I18nManager.getString("about.version"));
         versionLabelKey.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.BOLD, 14));
         versionLabelKey.setForeground(new Color(102, 102, 102));
+        versionLabelKey.setPreferredSize(new Dimension(100, 20));
         centerPanel.add(versionLabelKey, gbc);
 
         gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(8, 0, 8, 0);
         JLabel versionLabelValue = new JLabel(AppConfig.APP_VERSION);
         versionLabelValue.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.PLAIN, 14));
         versionLabelValue.setForeground(new Color(51, 51, 51));
-        versionLabelValue.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         centerPanel.add(versionLabelValue, gbc);
 
         // 添加作者信息
         gbc.gridx = 0;
         gbc.gridy = 1;
-        JLabel authorLabelKey = new JLabel("作者:");
+        gbc.weightx = 0;
+        gbc.insets = new Insets(8, 0, 8, 15);
+        JLabel authorLabelKey = new JLabel(I18nManager.getString("about.author"));
         authorLabelKey.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.BOLD, 14));
         authorLabelKey.setForeground(new Color(102, 102, 102));
+        authorLabelKey.setPreferredSize(new Dimension(100, 20));
         centerPanel.add(authorLabelKey, gbc);
 
         gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(8, 0, 8, 0);
         JLabel authorLabelValue = new JLabel(AppConfig.APP_AUTHOR);
         authorLabelValue.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.PLAIN, 14));
         authorLabelValue.setForeground(new Color(51, 51, 51));
-        authorLabelValue.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         centerPanel.add(authorLabelValue, gbc);
 
         // 添加描述信息
         gbc.gridx = 0;
         gbc.gridy = 2;
-        JLabel descLabelKey = new JLabel("描述:");
+        gbc.weightx = 0;
+        gbc.insets = new Insets(8, 0, 8, 15);
+        JLabel descLabelKey = new JLabel(I18nManager.getString("about.description"));
         descLabelKey.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.BOLD, 14));
         descLabelKey.setForeground(new Color(102, 102, 102));
+        descLabelKey.setPreferredSize(new Dimension(100, 20));
         centerPanel.add(descLabelKey, gbc);
 
         gbc.gridx = 1;
-        JLabel descLabelValue = new JLabel(AppConfig.APP_DESCRIPTION);
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(8, 0, 8, 0);
+        JLabel descLabelValue = new JLabel(AppConfig.getAppDescription());
         descLabelValue.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.PLAIN, 14));
         descLabelValue.setForeground(new Color(51, 51, 51));
-        descLabelValue.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         centerPanel.add(descLabelValue, gbc);
 
         // 添加功能信息
         gbc.gridx = 0;
         gbc.gridy = 3;
-        JLabel funcLabelKey = new JLabel("功能:");
+        gbc.weightx = 0;
+        gbc.insets = new Insets(8, 0, 8, 15);
+        JLabel funcLabelKey = new JLabel(I18nManager.getString("about.function"));
         funcLabelKey.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.BOLD, 14));
         funcLabelKey.setForeground(new Color(102, 102, 102));
+        funcLabelKey.setPreferredSize(new Dimension(100, 20));
         centerPanel.add(funcLabelKey, gbc);
 
         gbc.gridx = 1;
-        JLabel funcLabelValue = new JLabel(AppConfig.APP_FUNCTION);
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(8, 0, 8, 0);
+        JLabel funcLabelValue = new JLabel(AppConfig.getAppFunction());
         funcLabelValue.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.PLAIN, 14));
         funcLabelValue.setForeground(new Color(51, 51, 51));
-        funcLabelValue.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
         centerPanel.add(funcLabelValue, gbc);
+        
+        // 添加格式支持信息
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.weightx = 0;
+        gbc.insets = new Insets(8, 0, 8, 15);
+        JLabel formatLabelKey = new JLabel(I18nManager.getString("about.format"));
+        formatLabelKey.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.BOLD, 14));
+        formatLabelKey.setForeground(new Color(102, 102, 102));
+        formatLabelKey.setPreferredSize(new Dimension(100, 20));
+        centerPanel.add(formatLabelKey, gbc);
+
+        gbc.gridx = 1;
+        gbc.weightx = 1.0;
+        gbc.insets = new Insets(8, 0, 8, 0);
+        String formatInfo = I18nManager.isChinese() ? "PDF, 图片" : "PDF, Images";
+        if (parentFrame.getPrintService().isOfficeConverterAvailable()) {
+            formatInfo += I18nManager.isChinese() ? ", Office文档" : ", Office";
+        }
+        JLabel formatLabelValue = new JLabel(formatInfo);
+        formatLabelValue.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.PLAIN, 14));
+        formatLabelValue.setForeground(new Color(51, 51, 51));
+        formatLabelValue.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
+        centerPanel.add(formatLabelValue, gbc);
 
         // 底部面板 - 版权信息和确定按钮
         JPanel bottomPanel = new JPanel(new BorderLayout());
@@ -360,7 +401,7 @@ public class UIComponentFactory {
         bottomPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
 
         // 版权信息
-        JLabel copyrightLabel = new JLabel(AppConfig.COPYRIGHT);
+        JLabel copyrightLabel = new JLabel(AppConfig.getCopyright());
         copyrightLabel.setFont(new Font(AppConfig.Fonts.FONT_FAMILY, Font.PLAIN, 12));
         copyrightLabel.setForeground(new Color(153, 153, 153));
         copyrightLabel.setHorizontalAlignment(SwingConstants.CENTER);

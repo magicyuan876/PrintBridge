@@ -1,25 +1,43 @@
 package com.genscript.print.config;
 
+import com.genscript.print.i18n.I18nManager;
+
 /**
  * 应用配置类
  * 管理应用的基本配置信息
  * 
  * @author Magic_yuan
- * @version 2.0.0
+ * @version 2.1.0
  */
 public class AppConfig {
 
-    public static final String APP_NAME = "Print Tool";
-
-    public static final String APP_VERSION = "v2.0.0";
-
+    // 静态常量
+    public static final String APP_NAME = "PrintBridge";
+    public static final String APP_VERSION = "v2.1.0";
     public static final String APP_AUTHOR = "Magic_yuan";
 
-    public static final String APP_DESCRIPTION = "SCM打印控件";
+    // 国际化字符串(通过方法获取,支持动态切换语言)
+    public static String getAppDescription() {
+        return I18nManager.getString("app.description");
+    }
 
-    public static final String APP_FUNCTION = "跨浏览器打印解决方案";
+    public static String getAppFunction() {
+        return I18nManager.getString("app.function");
+    }
 
-    public static final String COPYRIGHT = "© 2025 Magic_yuan. All rights reserved.";
+    public static String getCopyright() {
+        return I18nManager.getString("app.copyright");
+    }
+
+    // 为了兼容性,保留常量形式(但使用方法更好)
+    @Deprecated
+    public static final String APP_DESCRIPTION = "PrintBridge - Connecting Web Apps to Local Printers";
+    
+    @Deprecated
+    public static final String APP_FUNCTION = "Cross-browser Print Middleware";
+    
+    @Deprecated
+    public static final String COPYRIGHT = "© 2020-2025 Magic_yuan. All rights reserved.";
 
     // UI配置
     public static final int WINDOW_WIDTH = 800;

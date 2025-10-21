@@ -28,8 +28,9 @@ PrintBridge诞生于真实业务场景中的痛点:当Web应用需要调用本�
 ## 核心特性 🚀
 
 - 🌐 **即插即用**: 一行API调用,任何浏览器都能打印
+- 📄 **多格式支持**: PDF、Word、Excel、PPT、图片等格式
 - ⚡ **高性能架构**: Jetty服务器 + 多线程队列,轻松应对高并发
-- 📄 **PDF专业打印**: Apache PDFBox引擎,打印质量有保证
+- 🔄 **智能转换**: 基于JODConverter + LibreOffice,完美还原格式
 - 🎯 **智能队列**: 可视化任务管理,批量打印不混乱
 - 🎨 **极简界面**: FlatLaf现代主题,操作直观不费力
 - 📝 **生产级日志**: SLF4J + Logback,问题排查有据可依
@@ -40,6 +41,7 @@ PrintBridge诞生于真实业务场景中的痛点:当Web应用需要调用本�
 ### 前置条件
 - ☕ Java 8+ 运行环境
 - 🖨️ 至少一台可用的打印机
+- 📦 LibreOffice (可选,用于支持Office格式)
 
 ### 启动服务
 
@@ -65,6 +67,35 @@ java -cp "target/classes:lib/*" com.genscript.print.PrintApplication
 ### 验证安装
 启动后访问 `http://localhost:8281/health` ,看到 `{"status":"ok"}` 即表示服务正常运行。
 
+### LibreOffice配置(可选)
+
+如需打印Word/Excel/PPT等Office格式,请安装LibreOffice:
+
+**Windows:**
+1. 访问 https://www.libreoffice.org/download/download/
+2. 下载并安装
+3. 重启PrintBridge服务
+
+**Linux:**
+```bash
+# Ubuntu/Debian
+sudo apt-get install libreoffice
+
+# CentOS/RHEL
+sudo yum install libreoffice
+```
+
+**macOS:**
+```bash
+brew install --cask libreoffice
+```
+
+启动时日志会显示:
+```
+✓ Office格式: Word, Excel, PowerPoint
+  LibreOffice已检测到,多格式支持已启用
+```
+
 ## 使用指南 📖
 
 ### API接口
@@ -76,12 +107,19 @@ java -cp "target/classes:lib/*" com.genscript.print.PrintApplication
 ```json
 [
   {
-    "fileName": "文档.pdf",      // 文档名称
-    "fileUrl": "http://example.com/document.pdf",  // PDF文件URL
-    "landscape": false          // false=竖向, true=横向
+    "fileName": "文档名称",           // 文档名称
+    "fileUrl": "http://example.com/file.xxx",  // 文件URL
+    "landscape": false               // false=竖向, true=横向
   }
 ]
 ```
+
+**支持的文件格式:**
+- PDF: `http://example.com/document.pdf`
+- Word: `http://example.com/report.docx`
+- Excel: `http://example.com/table.xlsx`
+- PowerPoint: `http://example.com/slides.pptx`
+- 图片: `http://example.com/image.png`
 
 **响应示例:**
 ```json
@@ -110,8 +148,17 @@ function printDocument(fileUrl, fileName = 'document.pdf') {
     .catch(err => console.error('✗ 打印失败:', err));
 }
 
-// 使用
+// 打印PDF
 printDocument('https://example.com/invoice.pdf', '发票.pdf');
+
+// 打印Word文档
+printDocument('https://example.com/report.docx', '报告.docx');
+
+// 打印Excel表格
+printDocument('https://example.com/data.xlsx', '数据.xlsx');
+
+// 打印图片
+printDocument('https://example.com/photo.png', '照片.png');
 ```
 
 #### jQuery方式
@@ -197,9 +244,31 @@ const handlePrint = async (pdfUrl) => {
 </details>
 
 <details>
-<summary><b>Q: 能打印非PDF格式吗?</b></summary>
+<summary><b>Q: 支持哪些文件格式?</b></summary>
 
-当前版本仅支持PDF格式。Word、Excel等格式支持已在[未来计划](#未来计划-)中。
+**完全支持:**
+- ✅ PDF文档
+
+**图片格式**(自动转换为PDF):
+- ✅ PNG, JPG, JPEG, GIF, BMP
+
+**Office格式**(需要安装LibreOffice):
+- ✅ Word (.docx, .doc)
+- ✅ Excel (.xlsx, .xls)
+- ✅ PowerPoint (.pptx, .ppt)
+
+如未安装LibreOffice,Office格式将无法打印。
+</details>
+
+<details>
+<summary><b>Q: 如何启用Office格式支持?</b></summary>
+
+**步骤:**
+1. 下载并安装 [LibreOffice](https://www.libreoffice.org/download/download/)
+2. 重启PrintBridge服务
+3. 启动时会自动检测LibreOffice并启用Office格式支持
+
+**验证**: 查看启动日志,会显示"LibreOffice已检测到,多格式支持已启用"
 </details>
 
 ## 架构设计 🏗️
@@ -219,6 +288,7 @@ PrintBridge
 **技术栈:**
 - 🚀 Web服务: Jetty 9.4
 - 🖨️ 打印引擎: Apache PDFBox 2.0
+- 🔄 格式转换: JODConverter 4.4 + LibreOffice
 - 🎨 界面框架: Swing + FlatLaf
 - 📝 日志系统: SLF4J + Logback
 - 📦 依赖管理: Maven
@@ -227,28 +297,31 @@ PrintBridge
 
 | 版本 | 日期 | 更新内容 |
 |------|------|----------|
+| **v2.1.0** | 2025-01 | 📄 多格式支持: Word/Excel/PPT/图片 + JODConverter集成 |
 | **v2.0.0** | 2025-01 | 🚀 企业级重构: Jetty服务器 + SLF4J日志 + FlatLaf主题 |
 | **v1.0.0** | 2020-08 | 🎉 初始版本: Socket HTTP服务器 + PDF打印 |
 
 ## 产品路线图 🗺️
 
-### 🎯 近期规划 (v2.1)
-- [ ] 📄 **多格式支持**: Word、Excel、图片等格式
-- [ ] 🖨️ **打印预设**: 保存常用打印配置
-- [ ] 📊 **打印统计**: 任务数量、成功率等统计
-- [ ] 🔔 **消息通知**: 打印完成桌面通知
+### ✅ v2.1 (当前版本)
+- [x] 📄 **多格式支持**: Word、Excel、PPT、图片等格式
+- [x] 🔄 **JODConverter集成**: 基于LibreOffice的格式转换
+- [x] 🖼️ **图片打印**: PNG、JPG、GIF、BMP自动转PDF
 
-### 🚀 中期规划 (v3.0)
-- [ ] ☁️ **云端集成**: 支持云存储服务(OSS/S3)
-- [ ] 🎨 **水印功能**: 文字/图片水印
-- [ ] 📱 **移动端**: iOS/Android客户端
-- [ ] 🔐 **权限管理**: 多用户访问控制
+### 🎯 v2.2 (计划中)
+- [ ] 🖨️ **打印预设**: 保存常用打印配置
+- [ ] 📋 **打印历史**: 查看和重新打印历史任务
+- [ ] 📊 **打印统计**: 任务数量、成功率等统计
+
+### 🚀 v3.0 (规划中)
+- [ ] 🎨 **水印功能**: 文字/图片水印添加
+- [ ] ⚙️ **高级设置**: 双面打印、页面范围、份数控制
+- [ ] 🖥️ **网络共享**: 局域网内多台电脑共享使用
 
 ### 🌟 长期愿景
-- [ ] 🤖 **智能化**: AI识别文档类型自动优化
-- [ ] 🌐 **SaaS化**: 云端部署企业版
-- [ ] 🔌 **插件市场**: 第三方扩展生态
-- [ ] 📈 **大数据**: 打印行为分析和优化建议
+- [ ] 🔍 **打印预览**: 打印前本地预览
+- [ ] ☁️ **云存储集成**: 支持OSS/S3等云存储直接打印
+- [ ] 🔐 **安全加固**: IP白名单、API Token认证
 
 > 💡 有好的想法?欢迎提Issue或加入讨论!
 
@@ -285,6 +358,8 @@ PrintBridge
 
 **核心依赖:**
 - [Apache PDFBox](https://pdfbox.apache.org/) - PDF处理引擎
+- [JODConverter](https://github.com/jodconverter/jodconverter) - 文档格式转换
+- [LibreOffice](https://www.libreoffice.org/) - Office文档渲染
 - [Eclipse Jetty](https://www.eclipse.org/jetty/) - HTTP服务器
 - [FlatLaf](https://www.formdev.com/flatlaf/) - 现代UI主题
 

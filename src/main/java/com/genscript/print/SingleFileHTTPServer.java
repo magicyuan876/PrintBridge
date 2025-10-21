@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.genscript.print.service.JettyPrintService;
+import com.genscript.print.service.PrintService;
 
 /**
  * 基于Jetty的HTTP服务器实现
@@ -15,6 +16,15 @@ public class SingleFileHTTPServer {
     private static final Logger logger = LoggerFactory.getLogger(SingleFileHTTPServer.class);
     private static final Object lock = new Object();
     private static JettyPrintService jettyPrintService;
+    private static PrintService printService;
+
+    /**
+     * 设置打印服务实例
+     * @param service 打印服务
+     */
+    public static void setPrintService(PrintService service) {
+        printService = service;
+    }
 
     /**
      * 初始化服务器 - 保持与原版本相同的接口
@@ -28,11 +38,16 @@ public class SingleFileHTTPServer {
                     return true;
                 }
 
-                jettyPrintService = new JettyPrintService();
+                if (printService == null) {
+                    logger.error("PrintService未设置，无法启动HTTP服务");
+                    return false;
+                }
+
+                jettyPrintService = new JettyPrintService(printService);
                 boolean success = jettyPrintService.start(8281);
 
                 if (success) {
-                    logger.info("=== Jetty HTTP打印服务启动成功 ===");
+                    logger.info("=== PrintBridge HTTP服务启动成功 ===");
                     logger.info("监听端口: 8281");
                     logger.info("服务端点:");
                     logger.info("  - POST http://localhost:8281/print  : 打印服务");

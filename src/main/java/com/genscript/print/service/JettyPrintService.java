@@ -20,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.alibaba.fastjson.JSONObject;
-import com.genscript.print.PrintUtils;
 import com.genscript.print.dto.PrintDTO;
 
 /**
@@ -40,6 +39,16 @@ public class JettyPrintService {
     private Server server;
 
     private boolean isRunning = false;
+    
+    private PrintService printService;
+
+    /**
+     * 构造函数
+     * @param printService 打印服务实例
+     */
+    public JettyPrintService(PrintService printService) {
+        this.printService = printService;
+    }
 
     /**
      * 启动Jetty服务
@@ -90,7 +99,7 @@ public class JettyPrintService {
             server.start();
             isRunning = true;
 
-            logger.info("Jetty打印服务已启动，监听端口: " + port);
+            logger.info("PrintBridge服务已启动，监听端口: " + port);
             logger.info("服务端点:");
             logger.info("  - POST /print  : 打印服务");
             logger.info("  - GET  /health : 健康检查");
@@ -98,7 +107,7 @@ public class JettyPrintService {
             return true;
 
         } catch (Exception e) {
-            logger.error("启动Jetty服务失败: {}", e.getMessage(), e);
+            logger.error("启动PrintBridge服务失败: {}", e.getMessage(), e);
             return false;
         }
     }
@@ -236,7 +245,7 @@ public class JettyPrintService {
                 // 异步执行打印任务
                 CompletableFuture.runAsync(() -> {
                     try {
-                        PrintUtils.printWithOutDialog(printList);
+                        printService.printWithoutDialog(printList);
                         logger.info("打印任务执行完成");
                     } catch (Exception e) {
                         logger.error("执行打印任务时发生错误: {}", e.getMessage(), e);

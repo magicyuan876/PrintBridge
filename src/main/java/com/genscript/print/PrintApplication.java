@@ -23,22 +23,42 @@ public class PrintApplication {
      * 应用程序入口方法
      */
     public static void main(String[] args) {
+        // 设置应用程序名称(用于系统通知显示)
+        setupApplicationProperties();
+        
         // 设置系统外观
         setupLookAndFeel();
 
         // 使用事件调度线程启动UI
         SwingUtilities.invokeLater(() -> {
             try {
-                logger.info("正在启动打印应用程序...");
+                logger.info("========================================");
+                logger.info("正在启动 PrintBridge 打印服务...");
+                logger.info("版本: v2.1.0");
+                logger.info("========================================");
                 PrintMainFrame mainFrame = new PrintMainFrame();
                 mainFrame.setVisible(true);
-                logger.info("打印应用程序启动成功");
+                logger.info("PrintBridge 启动成功");
             } catch (Exception e) {
-                logger.error("启动应用程序时发生错误: {}", e.getMessage(), e);
-                JOptionPane.showMessageDialog(null, "启动应用程序时发生错误: " + e.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
+                logger.error("启动PrintBridge时发生错误: {}", e.getMessage(), e);
+                JOptionPane.showMessageDialog(null, "启动PrintBridge时发生错误: " + e.getMessage(), "错误", JOptionPane.ERROR_MESSAGE);
                 System.exit(1);
             }
         });
+    }
+    
+    /**
+     * 设置应用程序属性
+     */
+    private static void setupApplicationProperties() {
+        // 设置应用程序名称(在某些系统上可能影响通知标题)
+        System.setProperty("apple.awt.application.name", "PrintBridge");
+        System.setProperty("com.apple.mrj.application.apple.menu.about.name", "PrintBridge");
+        
+        // Windows任务管理器中的显示名称
+        System.setProperty("sun.java.command", "PrintBridge");
+        
+        logger.debug("应用程序属性设置完成");
     }
 
     /**

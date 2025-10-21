@@ -5,9 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.genscript.print</groupId>
     <artifactId>printbridge</artifactId>
-    <version>2.0.0</version>
+    <version>2.1.0</version>
     <name>PrintBridge</name>
-    <description>Web Print Middleware - Connect Web Applications to Local Printers</description>
+    <description>Web Print Middleware - Support PDF, Office, Image formats</description>
     <url>https://github.com/magicyuan876/PrintBridge</url>
     <dependencies>
         <dependency>
@@ -56,6 +56,12 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-core</artifactId>
             <version>1.2.12</version>
+        </dependency>
+        <!-- JODConverter - Office文档转换 -->
+        <dependency>
+            <groupId>org.jodconverter</groupId>
+            <artifactId>jodconverter-local</artifactId>
+            <version>4.4.6</version>
         </dependency>
     </dependencies>
 
