@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.genscript.print.PrintServerUI
+Main-Class: com.magicyuan.print.PrintApplication
 
